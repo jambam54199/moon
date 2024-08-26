@@ -3,12 +3,14 @@
 <!DOCTYPE html>
 <html lang = "ko">
     <head>
-        <link rel = "stylesheet" href = "{% static 'css/pystagram_style.css' %}">
+        <!-- <link rel = "stylesheet" href = "{% static 'css/pystagram_style.css' %}"> -->
     </head>
     <body>
         <div id = "login">
             <form method = "POST">
                 <h1>M O O N</h1>
+                <!-- 랜덤이미지 적용 -->
+                <h3>today's movie</h3>
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type = "submit" class = "btn btn-login">로그인</button>
