@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from users.forms import LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def login_view(request):
@@ -28,7 +28,7 @@ def login_view(request):
 
             # 해당 사용자가 없다면
             else:
-                print("로그인에 실패하였습니다.")
+                form.add_error(None, "해당 사용자가 존재하지 않습니다.")
 
         # 어쨌든 실패했다면 다시 로그인으로 렌더링
         # 생성한 LoginForm 인스턴스를 템플릿에 전달
@@ -44,3 +44,10 @@ def login_view(request):
             "form" : form,
         }
         return render(request, "users/login.html", context)
+    
+def logout_view(request):
+    # logout 함수호출에 request를 전달
+    logout(request)
+
+    # logout 처리 후 로그인 페이지로
+    return redirect("/users/login/")
