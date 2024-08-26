@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang = "ko">
-    <head>
-        <h1>login</h1>
-    </head>
     <body>
-
+        <h1>LOGIN</h1>
+        <form method = "POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type = "submit">로그인</button>
+        </form>
     </body>
 </html>
