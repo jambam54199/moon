@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <h2>글 작성 페이지</h2>
+    <nav>
+
+    </nav>
+    <div id = "new">
+        <form method = "POST" enctype="multipart/form-data"> <!-- enctype : 인코딩방식-->
+            {% csrf_token %}
+            <div>
+                <label>리뷰</label>
+                <textarea name = "review" cols = "50" rows = "10"></textarea>
+            </div>
+            <div>
+                <label>한줄평</label>
+                <input type = "text" name = "short_comment">
+            </div>
+            <div>
+                <label>이미지</label>
+                <input name = "" type = "file">
+            </div>
+        <button type = "submit" class = "btn btn-primary">작성</button>
+    </div>
+</html>

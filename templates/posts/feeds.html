@@ -3,18 +3,25 @@
 <!DOCTYPE html>
 <html lang="ko">
     <body>
-        <h1>FEEDS</h1>
+        <h1>개인 목록 페이지</h1>
+        <div><img src="{{ user.profile_image.url }}"></div>
         <div>{{ user.username }} (ID : {{ user.id }})</div>
+        <div>{{ user.short_description }}</div>
         <a href = "/users/logout/">로그아웃</a>
         <section>
             {% for post in posts %}
             <div>
                 <h2>
-                    <a>{{ post.short_comment }}</a>
+                    <a href = "/posts/detail/">{{ post.short_comment }}</a>
                 </h2>
                 <p>{{ post.review }} </p>
                 <p>{{ post.user }}</p>
                 <p>{{ post.created }}</p>
+                <p>별점</p>
+                <p>아이콘</p>
+                <p>해시태그</p>
+                <p>좋아요 수</p>
+                <p>댓글 수</p>
             </div>
             {% endfor %}
         </section>

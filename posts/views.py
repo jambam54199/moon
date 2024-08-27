@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from posts.models import Post
+from posts.models import Post, Comment
+from movies.views import movies_detail
 
 # Create your views here.
 
@@ -22,3 +23,25 @@ def feeds(request):
         "posts" : posts
     }
     return render(request, "posts/feeds.html", context)
+
+def detail(request):
+    posts = Post.objects.all()             
+    context = {
+        "posts" : posts
+    }
+    return render(request, "posts/detail.html", context)
+    
+
+def new(request):
+    # print(request.POST) # POST 메서드로 전달된 데이터를 출력
+    if request.method == "POST": # method 가 POST 일 때
+        review = request.POST["review"]
+        short_comment = request.POST["short_comment"]
+   
+        post = Post.objects.create(
+            review = review,
+            short_comment = short_comment,
+        )
+        return redirect(f"/posts/detail/{post.pk}/")
+    
+    return render(request, "posts/new.html")

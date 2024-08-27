@@ -3,8 +3,34 @@
 <!DOCTYPE html>
 <html lang="ko">
     <body>
-        <h1>details</h1>
-        <div>{{ user.username }} (ID : {{ user.id }})</div>
-        <a href = "/users/logout/">로그아웃</a>
+        <h1>개인 상세 페이지</h1>
+        <!-- <div>{{ user.username }} (ID : {{ user.id }})</div>
+        <a href = "/users/logout/">로그아웃</a> -->
+        <section>
+            <ul>
+            {% for post in posts %}
+                <li>
+                    <div>
+                        <h2>
+                            <a href = "/posts/feeds/">{{ post.short_comment }}</a>
+                        </h2>
+                        <p>{{ post.review }} </p>
+                        <p>{{ post.user }}</p>
+                        <p>{{ post.created }}</p>
+                        <p>별점</p>
+                        <p>해시태그</p>
+                    </div>
+                    <ul>
+                        {% for comment in post.comment_set.all %}
+                            <li>{{ comment.content }}</li>
+                        {% endfor %}
+                    </ul>
+            {% endfor %}
+                <P>수정</P>
+                <P>삭제</P>
+                <p>좋아요</p>
+                </li>
+            </ul>
+        </section>
     </body>
 </html>
