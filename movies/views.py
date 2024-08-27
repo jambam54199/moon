@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from movies.models import movies_post
+<<<<<<< HEAD
+=======
+
+>>>>>>> b0501d7ae217d395efc87f8b75e609373987116d
 
 # Create your views here.
 def movies_list(request):
