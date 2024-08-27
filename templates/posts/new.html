@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang = "ko">
-    <h2>글 작성 페이지</h2>
-    <nav>
+{% extends '_base.html' %}
 
-    </nav>
-    <div id = "new">
-        <form method = "POST" enctype="multipart/form-data"> <!-- enctype : 인코딩방식-->
-            {% csrf_token %}
-            <div>
-                <label>리뷰</label>
-                <textarea name = "review" cols = "50" rows = "10"></textarea>
-            </div>
-            <div>
-                <label>한줄평</label>
-                <input type = "text" name = "short_comment">
-            </div>
-            <div>
-                <label>이미지</label>
-                <input name = "" type = "file">
-            </div>
-        <button type = "submit" class = "btn btn-primary">작성</button>
-    </div>
-</html>
+{% block content %}
+
+<div id = "post-add">
+    <h1>POST ADD</h1>
+
+    <!-- file 을 전송할 것이므로 enctype 을 multipart/form-data 로 설정해야 함 -->
+    <form method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <!-- label 의 for 속성에는 가리키는 input 의 id 값을 입력 -->
+             <laber for = "id_images">이미지</laber>
+             <input id = "id_images" name = "images" type = "file" multiple>
+        </div>
+        {{ form.as_p }}
+        <div>
+            <label for = "id_tags">해시태그</label>
+            <input id = "id_tags" name = "tags" type = "text" placeholder="쉼표(,)로 구분하여 여러 태그 입력">
+        </div>
+        <button type = "submit">게시</button>
+    </form>
+</div>
+{% endblock %}

@@ -8,6 +8,10 @@ class Post(models.Model):
     review = models.TextField("리뷰", blank = True)
     short_comment = models.CharField("한줄평", max_length = 50)
     created = models.DateTimeField("작성일시", auto_now_add = True)
+    tags = models.ManyToManyField("posts.HashTag", verbose_name="해시태그 목록", blank=True)
+
+    def __str__(self):
+        return f"{self.user.username}의 Post(id : {self.id})"
 
 class Comment(models.Model):
     user = models.ForeignKey("users.User",
@@ -18,5 +22,10 @@ class Comment(models.Model):
                              on_delete = models.CASCADE)
     content = models.TextField("댓글 내용")
     created = models.DateTimeField("작성일시", auto_now_add = True)
-    
+
+class HashTag(models.Model):
+    name = models.CharField("태그명", max_length=30)
+
+    def __str__(self):
+        return self.name    
 
