@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <body>
+        <nav>
+            <h1>
+                <a href="{% url 'movies:movies_list' %}">영화목록</a>
+            </h1>
+        </nav>
+        <!-- 글 작성 -->
+        <a href="" class="btn btn-primary">글 작성</a>
+        <!-- 영화 상세 정보 -->
+        <div>
+            <img src="{{ post.image.url }}">
+            <div>{{ post.title }}</div>
+            <span>{{ post.gnere }}</span>
+            <span>{{ post.country }}</span>
+            <span>{{ post.runningtime }}분</span>
+            <span>{{ post.year }}</span>
+            <p>{{ post.storyline }}</p>
+        </div>
+        <!-- post_comment 조회 -->
+        <!-- user, 한줄평 -->
+    </body>
+</html>
