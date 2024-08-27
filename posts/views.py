@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from posts.models import Post, Comment, HashTag
 from posts.forms import PostForm, CommentForm
 from django.views.decorators.http import require_POST
 from movies.views import movies_detail
 from django.urls import reverse
+from users.models import User
 
 # Create your views here.
 
@@ -32,7 +33,7 @@ def feeds(request):
 def detail(request):
     posts = Post.objects.all()             
     context = {
-        "posts" : posts
+        "posts" : posts,
     }
     return render(request, "posts/detail.html", context)
     

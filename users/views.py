@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from users.forms import LoginForm, SignupForm
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
+from users.forms import LoginForm, SignupForm
 from users.models import User
 
 # Create your views here.
@@ -82,3 +83,44 @@ def signup(request):
             "form" : form,
         }
     return render(request, "users/signup.html", context)
+
+def followers(request, user_id):
+    user = get_object_or_404(User, id = user_id)
+
+    relationships = user.follower_relationships.all()
+
+    context = {
+        "user" : user,
+        "title" : "Followers",
+        "relationships" : relationships,
+    }
+    return render(request, "users/followers.html", context)
+
+def following(request, user_id):
+    user = get_object_or_404(User, id = user_id)
+
+    relationships = user.following_relationships.all()
+
+    context = {
+        "user" : user,
+        "title" : "Following",
+        "relationships" : relationships,
+    }
+    return render(request, "users/following.html", context)
+
+def follow(request, user_id):
+    # 로그인 한 유저(from)
+    user = request.user
+
+    # 팔로우 할 유저(to)
+    target_user = get_object_or_404(User, id = user_id)
+
+    # 이미 팔로우 한 경우
+    if target_user in user.following.all():
+        user.following.remove(target_user)
+
+    else:
+        user.following.add(target_user)
+
+    url_next = request.GET.get("next") or reverse("users:profile", args=[user.id])
+    return redirect(url_next)
