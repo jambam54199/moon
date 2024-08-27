@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang = "ko">
-    <title>
-        <h1>movies post</h1>
-    </title>
-    <body>
-        <!-- 명대사 랜덤 -->
-        <!-- 장르 버튼 누르면 영화 추천 -->
-        <!-- 영화 목록 -->
-        {% for post in posts %}
+{% extends '_base.html' %}
+
+{% block main_area %}
+    <!-- 랜덤 명대사 -->
+    <!-- 장르 선택 후 랜덤 영화목록 -->
+    <!-- 영화 목록 -->
+    {% for post in posts %}
+        <container>
             <a href="{% url 'movies:movies_detail' pk=post.pk %}"><img src="{{ post.image.url }}"></a>
             <a href="{% url 'movies:movies_detail' pk=post.pk %}"><p>{{ post.title }}</p></a>
-        {% endfor %}
-    </body>
-</html>
+        </container>
+    {% endfor %}
+{% endblock %}
