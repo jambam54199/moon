@@ -2,16 +2,16 @@
 
 {% block main_area %}
     <!-- 글 작성 -->
-    <a href="{% url 'posts:feeds' %}" class="btn btn-primary">글 작성</a>
+    <a href="" class="btn btn-primary">글 작성</a>
     <!-- 영화 상세 정보 -->
     <div>
-        <img src="{{ post.image.url }}">
-        <span>{{ post.title }}</sapn>
-        <span>{{ post.gnere }}</span>
-        <span>{{ post.country }}</span>
-        <span>{{ post.runningtime }}분</span>
-        <span>{{ post.year }}</span>
-        <p>{{ post.storyline }}</p>
+        <img src="{{ m_post.image.url }}">
+        <span>{{ m_post.title }}</sapn>
+        <span>{{ m_post.gnere }}</span>
+        <span>{{ m_post.country }}</span>
+        <span>{{ m_post.runningtime }}분</span>
+        <span>{{ m_post.year }}</span>
+        <p>{{ m_post.storyline }}</p>
     </div>
     <!-- 다른 uesr 프로필사진, 한줄평 조회, 좋아요, 댓글 숫자 (최신순으로 조회)-->
 

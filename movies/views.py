@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from movies.models import movies_post
+from posts.models import Post, Comment
 
 # Create your views here.
 def movies_list(request):
@@ -9,7 +10,10 @@ def movies_list(request):
 
 
 def movies_detail(request, pk):
-    post = movies_post.objects.get(id=pk)
+    m_post = movies_post.objects.get(id=pk)
+    p_post = Post.objects.all()
 
-    context = {"post": post}
+    context = {
+        "m_post": m_post
+        }
     return render(request, "movies/movies_detail.html", context)
