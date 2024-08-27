@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang = "ko">
-    <head>
-        <h1>movies</h1>
-    </head>
+    <title>
+        <h1>movies post</h1>
+    </title>
     <body>
-
+        <!-- 명대사 랜덤 -->
+        <!-- 장르 버튼 누르면 영화 추천 -->
+        <!-- 영화 목록 -->
+        {% for post in posts %}
+            <a href="{% url 'movies:movies_detail' pk=post.pk %}"><img src="{{ post.image.url }}"></a>
+            <a href="{% url 'movies:movies_detail' pk=post.pk %}"><p>{{ post.title }}</p></a>
+        {% endfor %}
     </body>
 </html>

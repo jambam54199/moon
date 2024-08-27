@@ -1,10 +1,22 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang = "ko">
-    <head>
-        <h1>feeds</h1>
-    </head>
+<html lang="ko">
     <body>
+        <h1>FEEDS</h1>
         <div>{{ user.username }} (ID : {{ user.id }})</div>
         <a href = "/users/logout/">로그아웃</a>
+        <section>
+            {% for post in posts %}
+            <div>
+                <h2>
+                    <a>{{ post.short_comment }}</a>
+                </h2>
+                <p>{{ post.review }} </p>
+                <p>{{ post.user }}</p>
+                <p>{{ post.created }}</p>
+            </div>
+            {% endfor %}
+        </section>
     </body>
 </html>

@@ -26,3 +26,4 @@ class CommentAdmin(admin.ModelAdmin):
         "content",
         "created",
     ]
+
