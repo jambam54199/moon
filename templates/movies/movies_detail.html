@@ -21,9 +21,9 @@
     <!-- 다른 uesr 프로필사진, 한줄평 조회, 좋아요, 댓글 숫자 (최신순으로 조회)-->
     {% for post in posts %}
         <div class="user">
-            <a href="{% url 'posts:detail' %}"><img src="{{ post.user.profile_image.url }}"></a>
-            <a href="{% url 'posts:detail' %}"><p>{{ post.user }}</p></a>
-            <p>{{ post.short_comment }}</p>
+            <a href="{% url 'posts:feeds' %}"><img src="{{ post.user.profile_image.url }}"></a>
+            <a href="{% url 'posts:feeds' %}"><p>{{ post.user }}</p></a>
+            <a href="/posts/{{post.pk}}/"><p>{{ post.short_comment }}</p></a>
             <p>{{ post.created }}</p>
         </div>
     {% endfor %}
