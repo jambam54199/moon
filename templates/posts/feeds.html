@@ -2,21 +2,36 @@
 
 {% block main_area %}
     <h1>개인 목록 페이지</h1>
+    <!--개인 프로필 이미지-->
     <div class="user"><img src="{{ user.profile_image.url }}"></div>
-    <div>{{ user.username }} (ID : {{ user.id }})</div>
-    <div>{{ user.short_description }}</div>
+    <p>{{ user.username }}</p>
+    <p>{{ user.short_description }}</p>
     <a href = "/users/logout/">로그아웃</a>
+
+    <!--개인 팔로워/팔로잉 수-->
+    <div class = "counts">
+        <dl>
+            <dt>게시글</dt>
+            <dd>
+                <a href = "{% url 'posts:feeds' %}">{{ user.post_set.count }}</dd></a>
+            <dt>Followers</dt>
+            <dd>
+                <a href = "{% url 'users:followers' user_id=user.id %}">{{ user.followers.count }}</dd></a>
+            <dt>Following</dt>
+            <dd>
+                <a href = "{% url 'users:following' user_id=user.id %}">{{ user.following.count }}</dd></a>
+        </dl>
+    </div>
+    
     <section>
         {% for post in posts %}
         <div>
             <h2>
-                <a href = "/posts/detail/">{{ post.short_comment }}</a>
+                <a href = "/posts/{{post.pk}}/">{{ post.short_comment }}</a>
             </h2>
             <p>{{ post.review }} </p>
-            <p>{{ post.user }}</p>
             <p>{{ post.created }}</p>
             <p>별점</p>
-            <p>아이콘</p>
             <div class = "post-tags">
                 {% for tag in post.tags.all %}
                     <a href = "{% url 'posts:tags' tag_name=tag.name %}">#{{ tag.name }}</a>
