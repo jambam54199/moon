@@ -31,7 +31,7 @@ def movies_detail(request, pk):
 
 
 def search(request):
-    movie = movies_post.objects.all()
+    movies = movies_post.objects.all()
     keyword = request.GET.get("keyword", None)
 
     if keyword:

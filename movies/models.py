@@ -12,7 +12,7 @@ class movies_post(models.Model):
     year = models.CharField("개봉년도", max_length=10)
     agelimit = models.CharField("연령제한", max_length=10)
     country = models.CharField("국가", max_length=10)
-    famousline = models.TextField("명대사", blank=True)
+    famousline = models.TextField("명대사", blank=True, null=True)
 
     def __str__(self):
         return f"{self.title}"
