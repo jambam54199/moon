@@ -4,14 +4,13 @@
 {% block main_area %}
     <!-- 랜덤 명대사 -->
     <!-- Button trigger modal -->
+    <div class="movie">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-            <h5 class="card-title">{{ ran.title }}</h5>
-            <p class="card-text">{{ ran.famousline }}</p>
+            <p class="card-text">{{ line_ran.english }}</p>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Card link</button>
             </div>
         </div>
-        </button>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -21,7 +20,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        첫 번째 교훈. 아무리 시간 여행을 한다 해도, 누군가 날 사랑하게 만들 수 없다는 것
+                        {{ line_ran.korean }}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -29,23 +28,26 @@
                 </div>
             </div>
         </div>
-        <!-- 장르 선택 후 랜덤 영화목록 -->
-        <div class="movie">
-            <a href="{% url 'movies:movies_detail' pk=ran.pk %}">
-                <img src="{{ ran.image.url }}">
+
+        <!-- 랜덤 영화목록 -->
+        <div class="card" style="width: 35rem; place-items: center;">
+            <p style="text-align: center; font-size: medium;">오늘의 추천 영화</p>
+            <div class="movie">
+                <a href="{% url 'movies:movies_detail' pk=image_ran1.pk %}"><img src="{{ image_ran1.image.url }}" style="width: 150px; height: 300px;"></a>
+                <a href="{% url 'movies:movies_detail' pk=image_ran2.pk %}"><img src="{{ image_ran2.image.url }}" style="width: 150px; height: 300px;"></a>
+            </div>
         </div>
+    </div>
     
     <!-- 영화 목록 -->
-    {% for post in m_posts %}
-        <div class="movie">
+    <div class="movie">
+        {% for post in m_posts %}
             <a href="{% url 'movies:movies_detail' pk=post.pk %}">
                 <img src="{{ post.image.url }}">
             </a>
-        </div>
-        <div>
             <a href="{% url 'movies:movies_detail' pk=post.pk %}">
                 <p>{{ post.title }}</p>
             </a>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}

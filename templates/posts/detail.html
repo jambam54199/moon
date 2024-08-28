@@ -1,5 +1,13 @@
 {% extends '_base.html' %}
 
+{% block head_area %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
 {% block main_area %}
     <h1>개인 상세 페이지</h1>
     <!-- 회원정보 -->
@@ -44,6 +52,7 @@
                         좋아요({{ posts.like_users.count }})
                     </button>
                 </form>
+<<<<<<< HEAD
                 <!-- 댓글 시작 --> 
                     <div class = "post-comments">
                     <span>댓글({{ posts.comment_set.count }})</span>
@@ -60,4 +69,22 @@
             </ul>
         </div>
     </div>
+=======
+                <span>댓글({{ post.comment.count }})</span>
+                <ul>
+                    {% for comment in posts.comment_set.all %}
+                        <li>{{ comment.content }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class = "post-comments">
+
+         <!-- 좋아요 이미지 -->
+
+        <ul>
+            <P>수정</P>
+            <P>삭제</P>   
+        </ul>
+    </article>
+>>>>>>> movies
 {% endblock %}

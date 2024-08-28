@@ -1,31 +1,67 @@
 {% extends '_base.html' %}
 
+{% block head_area %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
 {% block main_area %}
     <!-- 글 작성 -->
+<<<<<<< HEAD
     <!-- posts/new/<int:pk>에서 받을 pk값은 m_post.pk값(movies view에 movies_detail 함수에 넘겨준 값) -->
     <a href="{% url 'posts:new' pk=m_post.pk %}" class="btn btn-primary">글 작성</a>
+=======
+    <a href="{% url 'posts:new' %}" class="btn btn-primary">글 작성</a>
+
+
+
+>>>>>>> movies
     <!-- 영화 상세 정보 -->
     <div class="movie">
         <img src="{{ m_post.image.url }}">
-        <span>{{ m_post.title }}</sapn>
-        <span>{{ m_post.gnere }}</span>
-        <span>{{ m_post.country }}</span>
-        <span>{{ m_post.runningtime }}분</span>
-        <span>{{ m_post.year }}</span>
-        <p>{{ m_post.storyline }}</p>
+      </div>
+
+    <div class="movie">
+      <!-- 영화별점 -->
+      <div class="vote">
+        <div class="moon" value="1"></div>
+        <div class="moon" value="2"></div>
+        <div class="moon" value="3"></div>
+        <div class="moon" value="4"></div>
+        <div class="moon" value="5"></div>
+      </div>
+
+      <script>
+        document.querySelectorAll('.moon').forEach(($moon) => {
+          $moon.addEventListener('click', ({ target }) => {
+            // 모든 .moon에서 .active 삭제
+            document.querySelectorAll('.moon').forEach(($moon) => {
+              $moon.classList.remove('active');
+            });
+            // 클릭한 .moon에 .active 추가
+            target.classList.add('active');
+          });
+        });
+        </script>
+        
+          <span>{{ m_post.title }}</sapn>
+          <span>{{ m_post.gnere }}</span>
+          <span>{{ m_post.country }}</span>
+          <span>{{ m_post.runningtime }}분</span>
+          <span>{{ m_post.year }}</span>
+          <p>{{ m_post.storyline }}</p>
     </div>
-    <!-- 영화별점 -->
-    <div>
-        <!-- 빈 하트 이미지-->
-        <i class="bi bi-heart"></i>
-    </div>
+
     <!-- 다른 uesr 프로필사진, 한줄평 조회, 좋아요, 댓글 숫자 (최신순으로 조회)-->
     {% for post in posts %}
         <div class="user">
             <a href="{% url 'posts:feeds' %}"><img src="{{ post.user.profile_image.url }}"></a>
-            <a href="{% url 'posts:feeds' %}"><p>{{ post.user }}</p></a>
-            <a href="/posts/{{post.pk}}/"><p>{{ post.short_comment }}</p></a>
-            <p>{{ post.created }}</p>
+            <a href="{% url 'posts:feeds' %}"><span>{{ post.user }}</span></a>
+            <a href="/posts/{{post.pk}}/"><span>{{ post.short_comment }}</span></a>
+            <span>{{ post.created }}</span>
         </div>
     {% endfor %}
 {% endblock %}

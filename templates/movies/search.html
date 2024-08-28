@@ -2,9 +2,13 @@
 
 {% block main_area %}
     {% for movie in movies %}
-        <a class="movie">
+    <div class="movie">
+        <a href="{% url 'movies:movies_detail' pk=movie.pk %}">
             <img src="{{ movie.image.url }}">
+        </a>
+        <a href="{% url 'movies:movies_detail' pk=movie.pk %}">
             <p>{{ movie.title }}</p>
         </a>
+    </div>
     {% endfor %}
 {% endblock %}
