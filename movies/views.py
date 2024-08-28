@@ -21,13 +21,14 @@ def movies_list(request):
 
 def movies_detail(request, pk):
     m_post = movies_post.objects.get(id=pk)
-    posts = Post.objects.all().order_by("-id")
+    posts = m_post.post_set.all().order_by("-id")
 
     context = {
         "m_post": m_post,
         "posts": posts,
     }
     return render(request, "movies/movies_detail.html", context)
+
 
 
 def search(request):

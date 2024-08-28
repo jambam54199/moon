@@ -10,10 +10,9 @@
         {% for post in posts %}
         <div>
             <h2>
-                <a href = "/posts/detail/">{{ post.short_comment }}</a>
+                <a href = "/posts/{{post.pk}}/">{{ post.short_comment }}</a>
             </h2>
             <p>{{ post.review }} </p>
-            <p>{{ post.user }}</p>
             <p>{{ post.created }}</p>
             <p>별점</p>
             <p>아이콘</p>

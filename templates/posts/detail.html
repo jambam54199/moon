@@ -2,12 +2,10 @@
 
 {% block main_area %}
     <h1>개인 상세 페이지</h1>
-    <div>{{ user.username }} (ID : {{ user.id }})</div>
+    <div>{{ user.username }}</div>
     <a href = "/users/logout/">로그아웃</a>
     <section>
         <ul>
-            {% for post in posts %}
-            <li>
                 <div>
                     <h2>
                         <a href = "/posts/feeds/">{{ post.short_comment }}</a>
@@ -27,23 +25,6 @@
                         <li>{{ comment.content }}</li>
                     {% endfor %}
                 </ul>
-                <!-- 좋아요/댓글 시작 -->
-                <div class = "post-buttons">
-                    <form action = "{% url 'posts:post_like' post_id=post.id %}?next={{ action_redirect_url }}" method = "POST">
-                        {% csrf_token %}
-                        <button type = "submit" 
-                            {% if user in post.like_users.all %} 
-                                style = "color: red;" 
-                            {% endif %}>
-                            <!-- Post 의 related_name 으로 지정한 like_users 로 좋아요 누른 사용자 수를 가져옴 -->
-                            Likes({{ post.like_users.count }})
-                        </button>
-                    </form>
-                    <!-- <span>Comments({{ post.comment_set.count }})</span> -->
-                </div>
-                <div class = "post-comments">
-            </li>
-            {% endfor %}
             <P>수정</P>
             <P>삭제</P>
             <p>좋아요</p>    
