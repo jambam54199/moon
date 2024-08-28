@@ -8,11 +8,11 @@
         <ul>
             <div>
                 <h2>
-                    <a href = "/posts/feeds/">{{ post.short_comment }}</a>
+                    <a href = "/posts/feeds/">{{ posts.short_comment }}</a>
                 </h2>
-                <p>{{ post.review }} </p>
-                <p>{{ post.user }}</p>
-                <p>{{ post.created }}</p>
+                <p>{{ posts.review }} </p>
+                <p>{{ posts.user }}</p>
+                <p>{{ posts.created }}</p>
                 <p>별점</p>
                 <div class = "post-tags">
                     {% for tag in post.tags.all %}
@@ -46,10 +46,10 @@
                             style = "color: red;" 
                         {% endif %} class = "btn btn-primary">
                         <!-- Post 의 related_name 으로 지정한 like_users 로 좋아요 누른 사용자 수를 가져옴 -->
-                        좋아요({{ post.like_users.count }})
+                        좋아요({{ posts.like_users.count }})
                     </button>
                 </form>
-                <span>댓글({{ post.comment.count }})</span>
+                <span>댓글({{ posts.comment_set.count }})</span>
                 <ul>
                     {% for comment in posts.comment_set.all %}
                         <li>{{ comment.content }}</li>
