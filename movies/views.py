@@ -21,6 +21,8 @@ def movies_list(request):
 
 def movies_detail(request, pk):
     m_post = movies_post.objects.get(id=pk)
+
+    # 영화 관련 글 목록 조회
     posts = m_post.post_set.all().order_by("-id")
 
     context = {
