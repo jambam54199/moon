@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');       /* 구글 폰트 적용시키기 */
+
+* {
+    font-family: 'Gowun Dodum', sans-serif;       /* 구글 폰트 적용시키기 */
+}
+
+html {
+  margin: 0;
+  font-family: "Noto Sans KR", serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: #333;
+  height: 100%;
+}
+
+/* user관련 css 코드 */
+div.user img{
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+div.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+/* movie관련 css코드 */
+div.movie img{
+    width: 300px;
+    height: 500px;
+    margin-right: 20px;
+}
+
+div.movie {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+div.movie span{
+    font-size: medium ;
+}
+
+.post {
+    width: 330px;
+    height: 550px;
+    margin: 20px auto 0px auto;     /* 바깥쪽 여백 */
+    padding: 15px;                  /* 안쪽 여백 */
+    box-shadow: 0px 0px 3px 0px gray;       /* 박스 바깥 테두리에 그림자 지도록 */
+}

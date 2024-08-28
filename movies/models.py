@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class movies_post(models.Model):
     title = models.CharField("영화제목", max_length=50)

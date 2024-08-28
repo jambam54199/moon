@@ -4,38 +4,48 @@
 {% block main_area %}
     <!-- 랜덤 명대사 -->
     <!-- Button trigger modal -->
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{ line.title }}</h5>
-          <p class="card-text">{{ line.famousline }}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Card link</button>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{ ran.title }}</h5>
+            <p class="card-text">{{ ran.famousline }}</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Card link</button>
+            </div>
         </div>
-      </div>
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ posts.title }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    첫 번째 교훈. 아무리 시간 여행을 한다 해도, 누군가 날 사랑하게 만들 수 없다는 것
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ posts.title }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        첫 번째 교훈. 아무리 시간 여행을 한다 해도, 누군가 날 사랑하게 만들 수 없다는 것
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- 장르 선택 후 랜덤 영화목록 -->
-    <img src="{{ line.image.url }}">
+        <!-- 장르 선택 후 랜덤 영화목록 -->
+        <div class="movie">
+            <a href="{% url 'movies:movies_detail' pk=ran.pk %}">
+                <img src="{{ ran.image.url }}">
+        </div>
+    
     <!-- 영화 목록 -->
     {% for post in m_posts %}
-        <div class="container">
-            <a href="{% url 'movies:movies_detail' pk=post.pk %}"><img src="{{ post.image.url }}"></a>
-            <a href="{% url 'movies:movies_detail' pk=post.pk %}"><p>{{ post.title }}</p></a>
+        <div class="movie">
+            <a href="{% url 'movies:movies_detail' pk=post.pk %}">
+                <img src="{{ post.image.url }}">
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'movies:movies_detail' pk=post.pk %}">
+                <p>{{ post.title }}</p>
+            </a>
         </div>
     {% endfor %}
 {% endblock %}

@@ -1,0 +1,10 @@
+{% extends '_base.html' %}
+
+{% block main_area %}
+    {% for movie in movies %}
+        <a class="movie">
+            <img src="{{ movie.image.url }}">
+            <p>{{ movie.title }}</p>
+        </a>
+    {% endfor %}
+{% endblock %}
