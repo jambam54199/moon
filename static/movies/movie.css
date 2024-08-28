@@ -28,6 +28,17 @@ div.user {
   gap: 1rem;
 }
 
+.wrapper {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+}
+
+.content {
+  padding: 3rem;
+  font-size: 2rem;
+  border-radius: 1rem;
+}
 
 /* movie관련 css코드 */
 div.movie img{
@@ -40,16 +51,42 @@ div.movie {
   display: flex;
   align-items: center;
   gap: 1rem;
+  text-align: center;
 }
 
 div.movie span{
     font-size: medium ;
+    text-align: left;
 }
 
-.post {
-    width: 330px;
-    height: 550px;
-    margin: 20px auto 0px auto;     /* 바깥쪽 여백 */
-    padding: 15px;                  /* 안쪽 여백 */
-    box-shadow: 0px 0px 3px 0px gray;       /* 박스 바깥 테두리에 그림자 지도록 */
-}
+
+/* 영화 별점 */
+body {
+      background: rgb(32, 32, 40);
+    }
+
+    .vote {
+      display: flex;
+    }
+
+    .moon { padding: 1px; }
+
+    .moon::after {
+      font-family:'Bootstrap-icons';
+      content: '\F497';
+      color: hsl(59, 92%, 51%);
+      font-size: 40px;
+    }
+
+    .moon:hover::after,
+    .moon:has(~ .moon:hover)::after,
+    .moon.active::after,
+    .moon:has(~ .moon.active)::after {
+      font-family:'Bootstrap-icons';
+      content: '\F494';
+    }
+
+    .moon:hover ~ .moon::after {
+      font-family:'Bootstrap-icons';
+      content: '\F497';
+    }
