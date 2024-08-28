@@ -6,6 +6,7 @@ class Post(models.Model):
     movies = models.ForeignKey("movies.movies_post",
                               verbose_name = "영화",
                               on_delete = models.CASCADE)
+                            #   default="")
     user = models.ForeignKey("users.User", # 앱이름.모델이름
                              verbose_name = "작성자",
                              on_delete = models.CASCADE) # 작성자 데이터 삭제되면 Post도 같이 삭제

@@ -3,16 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from users.forms import LoginForm, SignupForm
 from users.models import User
-from movies.models import movies_post
-import random
 
 # Create your views here.
 def login_view(request):
-
-    poster = movies_post.objects.all()
-
-    ran = random.choice(poster)
-
     # 이미 로그인 되어 있는 경우 -> 피드 페이지로
     if request.user.is_authenticated:
             return redirect("posts:feeds")
@@ -47,8 +40,6 @@ def login_view(request):
         # 어떤 이유든, 실패한 경우라면 다시 LoginForm을 사용한 로그인 페이지 렌더링
         context = {
             "form" : form,
-            "poster" : poster,
-            "ran" : ran,
         }
         return render(request, "users/login.html", context)
     
@@ -59,8 +50,6 @@ def login_view(request):
         # 생성한 LoginForm 인스턴스를 템플릿에 "form"이라는 키로 전달
         context = {
             "form" : form,
-            "poster" : poster,
-            "ran" : ran,
         }
         return render(request, "users/login.html", context)
     

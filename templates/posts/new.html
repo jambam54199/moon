@@ -1,26 +1,24 @@
 {% extends '_base.html' %}
 
-{% block main_area %}
+{% block content %}
 
-    <div id = "post-add">
-        <h1>게시글 작성</h1>
-        <form method = "POST">
-            {% csrf_token %}
-                <!-- label 의 for 속성에는 가리키는 input 의 id 값을 입력 -->
-            <div>
-                <label>리뷰</label>
-                <textarea name = "content" cols = "80" rows = "10"></textarea>
-            </div>
-            <div>
-                <label>한줄평</label>
-                <input type = "text" name = "title">
-            </div>
-            <div>
-                <label for = "id_tags">해시태그</label>
-                <input id = "id_tags" name = "tags" type = "text" placeholder="쉼표(,)로 구분하여 태그 입력">
-            </div>
-            <button type = "submit" class = "btn btn-primary">게시</button>
-        </form>
-    </div>
+<div id = "post-add">
+    <h1>POST ADD</h1>
 
+    <!-- file 을 전송할 것이므로 enctype 을 multipart/form-data 로 설정해야 함 -->
+    <form method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <!-- label 의 for 속성에는 가리키는 input 의 id 값을 입력 -->
+             <laber for = "id_images">이미지</laber>
+             <input id = "id_images" name = "images" type = "file" multiple>
+        </div>
+        {{ form.as_p }}
+        <div>
+            <label for = "id_tags">해시태그</label>
+            <input id = "id_tags" name = "tags" type = "text" placeholder="쉼표(,)로 구분하여 여러 태그 입력">
+        </div>
+        <button type = "submit">게시</button>
+    </form>
+</div>
 {% endblock %}

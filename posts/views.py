@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from posts.models import Post, Comment, HashTag
 from posts.forms import PostForm, CommentForm
+from django.views.decorators.http import require_POST
 from movies.views import movies_detail
 from django.urls import reverse
 from users.models import User
@@ -29,29 +30,17 @@ def feeds(request):
 
     return render(request, "posts/feeds.html", context)
 
-def detail(request, post_id):
-    posts = get_object_or_404(Post, pk = post_id)             
+def detail(request):
+    posts = Post.objects.all()             
     context = {
         "posts" : posts,
     }
     return render(request, "posts/detail.html", context)
     
 
+@require_POST
 def new(request):
     if request.method == "POST":
-
-        post = form.save(commit=False)
-        post.user = request.user
-        post.save()
-        
-        review = request.POST.get("review")
-        short_comment = request.POST.get("short_comment")
-
-        post = Post.objects.create(
-            review = review,
-            short_comment = short_comment,
-            )
-        
         # request.POST 로 온 데이터("content")는 PostForm 으로 처리
         form = PostForm(request.POST)
 
@@ -60,6 +49,17 @@ def new(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
+
+            # Post 를 생성한 후
+            # request.FILES.getlist("images") 로 전송된 이미지들을 순회하며
+            # PostImage 객체를 생성
+            # for image_file in request.FILES.getlist("images"):
+            #     # request.FILES 또는 request.FILES.getlist() 로 가져온 파일은
+            #     # Model 의 ImageField 부분에 곧바로 할당
+            #     PostImage.objects.create(
+            #         post = post,
+            #         photo = image_file,
+            #     )
 
             # "tags" 에 전달된 문자열을 분리해 HashTag 생성
             tag_string = request.POST.get("tags")
@@ -76,7 +76,8 @@ def new(request):
 
             # 모든 PostImage 와 Post 의 생성이 완료되면
             # 피드페이지로 이동하여 생성된 Post 의 위치로 스크롤되도록 함
-            return redirect(f"/posts/{post.id}/")
+            url = reverse("posts") + f"#post-{post.id}"
+            return redirect(url)
 
     # GET 요청일 때는 빈 form 을 보여주도록 함
     else:

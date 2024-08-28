@@ -7,7 +7,7 @@ class movies_post(models.Model):
     image = models.ImageField("포스터", upload_to="post")
     storyline = models.TextField("줄거리")
     runningtime = models.IntegerField("러닝타임", default=0)
-    genre = models.CharField("장르", max_length=10)
+    gnere = models.CharField("장르", max_length=10)
     director = models.CharField("감독", max_length=20)
     year = models.CharField("개봉년도", max_length=10)
     agelimit = models.CharField("연령제한", max_length=10)

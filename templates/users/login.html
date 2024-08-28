@@ -8,7 +8,6 @@
             <form method = "POST">
                 <h1>M O O N</h1>
                 <!-- 랜덤이미지 적용 -->
-                <img style="width: 300px; height: 500px; margin-right: 20px;" src = "{{ ran.image.url }}">
                 <h3>today's movie</h3>
                 {% csrf_token %}
                 {{ form.as_p }}
