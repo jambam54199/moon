@@ -2,7 +2,8 @@
 
 {% block main_area %}
     <!-- 글 작성 -->
-    <a href="{% url 'posts:new' %}" class="btn btn-primary">글 작성</a>
+    <!-- posts/new/<int:pk>에서 받을 pk값은 m_post.pk값(movies view에 movies_detail 함수에 넘겨준 값) -->
+    <a href="{% url 'posts:new' pk=m_post.pk %}" class="btn btn-primary">글 작성</a>
     <!-- 영화 상세 정보 -->
     <div class="movie">
         <img src="{{ m_post.image.url }}">
