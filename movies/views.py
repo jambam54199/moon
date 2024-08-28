@@ -20,19 +20,18 @@ def movies_list(request):
 
 
 def movies_detail(request, pk):
+    # movies_detail.html에 넘겨주는 movies_post의 모든 정보는 m_post 로 받는다.
+    # m_post 는 movies_post에서 id=pk인 값만 찾아서 get으로 가져온다.
     m_post = movies_post.objects.get(id=pk)
-<<<<<<< HEAD
 
     # 영화 관련 글 목록 조회
     posts = m_post.post_set.all().order_by("-id")
-=======
-    posts = Post.objects.all().order_by("-id")
->>>>>>> parent of fbe2387 (영화 상세 페이지 한줄평 추가)
 
     context = {
         "m_post": m_post,
         "posts": posts,
     }
+    # movies_detail.html에 넘겨주는 pk값의 이름은 pk임을 명시했다.
     return render(request, "movies/movies_detail.html", context)
 
 

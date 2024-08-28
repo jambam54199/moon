@@ -22,7 +22,23 @@
                 <a href = "{% url 'users:following' user_id=user.id %}">{{ user.following.count }}</dd></a>
         </dl>
     </div>
-    
+            <!-- 글의 작성자가 로그인 한 사용자라면 팔로우 버튼을 표시하지 않는다 -->
+            <!-- (자기 자신을 팔로우 하는 것을 방지) -->
+            {% if user != post.user %}
+            <form action = "{% url 'users:follow' user_id=user.id %}"
+                method = "POST">
+                {% csrf_token %}
+                <button type = "submit" class = "btn btn-primary">
+                    <!-- 이 Post 의 작성자가 이미 자신의 팔로잉 목록에 포함된 경우 -->
+                    {% if post.user in user.following.all %}
+                        Unfollow
+                    <!-- 이 Post 의 작성자를 아직 팔로우하지 않은 경우 -->
+                    {% else %}
+                        Follow
+                    {% endif %}
+                </button>
+            </form>
+            {% endif %}
     <section>
         {% for post in posts %}
         <div>

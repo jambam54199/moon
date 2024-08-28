@@ -9,7 +9,7 @@ class Post(models.Model):
     user = models.ForeignKey("users.User", # 앱이름.모델이름
                              verbose_name = "작성자",
                              on_delete = models.CASCADE) # 작성자 데이터 삭제되면 Post도 같이 삭제
-    review = models.TextField("리뷰", blank = True)
+    review = models.TextField("리뷰", blank=False)
     short_comment = models.CharField("한줄평", max_length = 50)
     created = models.DateTimeField("작성일시", auto_now_add = True)
     tags = models.ManyToManyField("posts.HashTag", verbose_name="해시태그 목록", blank=True)
